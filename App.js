@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  ImageBackground, Platform,
-  StatusBar,
-  StyleSheet,
-  View,
-  Text,
-} from "react-native";
+import { ImageBackground, StyleSheet, View, Text } from "react-native";
 import { AppLoading, Asset, Font } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 import ApiKeys from "./constants/ApiKeys";
@@ -35,36 +29,30 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <ImageBackground
-          source={require('https://encrypted-tbn0.gstatic.com/images q=tbn%3AANd9GcTiKfZUOLmu1MErperX-wlbRWS6KFFSKIneIMEyPHWuJwdXBSTY')}
-          style={{ width: "100%", height: "100%" }}
-        >
-          <Text>Inside</Text>
-
-          <View style={styles.container}>
-            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            {Platform.OS === "android" && (
-              <View style={styles.statusBarUnderlay} />
-            )}
-            <Text> Hello there</Text>
-          </View>
-        </ImageBackground>
+        <View style={styles.container}>
+          <ImageBackground
+            source={require("./images/images.jpeg")}
+            style={styles.container2}
+          >
+            <View style={styles.container3}>
+              <View style={styles.headerText}>
+                <text>Hello</text>
+              </View>
+            </View>
+          </ImageBackground>
+        </View>
       );
     }
   }
 
   _loadResourcesAsync = async () => {
     return Promise.all([
-      Asset.loadAsync([
-   
-       
-      ]),
+      Asset.loadAsync([]),
       Font.loadAsync({
         // This is the font that we are using for our tab bar
         ...Ionicons.font,
         // We include SpaceMono because we use it in HomeScreen.js. Feel free
         // to remove this if you are not using it in your app
-       
       }),
     ]);
   };
@@ -82,11 +70,25 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+    flexDirection: "column",
     flex: 1,
-    backgroundColor: "#fff",
   },
-  statusBarUnderlay: {
-    height: 24,
-    backgroundColor: "rgba(0,0,0,0.2)",
+
+  container2: {
+    flex: 1,
+    alignItems: "center",
+    width: null,
+    height: null,
+  },
+
+  container3: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "#000",
+    opacity: 0.5,
+    marginBottom: 15,
+  },
+  headerText: {
+    marginTop: 100,
   },
 });
